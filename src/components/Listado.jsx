@@ -1,18 +1,26 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import swal from "@sweetalert/with-react";
+import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom"
 
 const Listado = () => {
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     const endPoint =
       "https://api.themoviedb.org/3/discover/movie?api_key=08a8246a9e59f864e9c48e34d244f625&include_adult=false&include_video=false&language=en&page=1&sort_by=popularity.desc";
-    axios.get(endPoint).then((res) => {
-      const apiData = res.data;
-      setMovies(apiData.results);
-    });
+    axios
+      .get(endPoint)
+      .then((res) => {
+        const apiData = res.data;
+        setMovies(apiData.results);
+      })
+      .catch((error) => {
+        swal(<h2> Oops! Error in DataBase , please try again</h2>);
+      });
   }, [setMovies]);
 
   console.log(movies);
@@ -46,9 +54,9 @@ const Listado = () => {
                     </span>
                     <span className="font-bold"></span>
                   </div>
-                  <p className="hidden md:block px-4 my-4 text-sm text-left">
+                  {/* <p className="hidden md:block px-4 my-4 text-sm text-left">
                     REVIEW : {oneMovie.overview}
-                  </p>
+                  </p> */}
 
                   <p className="flex text-md px-4 my-2">
                     {oneMovie.vote_average}
@@ -77,6 +85,13 @@ const Listado = () => {
                     >
                       AMAZON
                     </button>
+
+                    <Link
+                      to={`/moviedetail?movieid=${oneMovie.id}`}
+                      className="border border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-yellow-5 00 focus:outline-none focus:shadow-outline"
+                    >
+                      Watch Movie
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -85,7 +100,9 @@ const Listado = () => {
                   <i className="material-icons mr-2 text-red-600 hover:text-red-900 ">
                     favorite_border
                   </i>
-                  <i className="material-icons text-blue-600 hover:text-blue-800">remove_red_eye</i>
+                  <i className="material-icons text-blue-600 hover:text-blue-800">
+                    remove_red_eye
+                  </i>
                 </div>
                 <div className="flex">
                   <i className="material-icons ml-2 text-yellow-600 hover:text-yellow-800">
@@ -103,7 +120,9 @@ const Listado = () => {
                   <i className="material-icons ml-2 text-yellow-600 hover:text-yellow-800">
                     star_half
                   </i>
-                  <i className="material-icons ml-2 text-yellow-600 hover:text-yellow-800">star</i>
+                  <i className="material-icons ml-2 text-yellow-600 hover:text-yellow-800">
+                    star
+                  </i>
                 </div>
               </div>
             </div>

@@ -19,7 +19,7 @@ const Login = () => {
     console.log(email, password);
     console.log(regexEmail.test(email));
 
-    //Validations
+    // Validations
     if (regexEmail.test(email) !== " " && password.length >= 3) {
       swal(<h2>Logged In</h2>);
     } else {
@@ -43,12 +43,12 @@ const Login = () => {
       .then((res) => {
         swal(<h2>Ingresaste correctamente</h2>);
         const tokenRecibido = res.data.token;
-        localStorage.setItem("token", tokenRecibido);
+        sessionStorage.setItem("token", tokenRecibido);
         handleClick();
       });
   };
 
-  let token = localStorage.getItem("token");
+  let token = sessionStorage.getItem("token");
 
   return (
     <>
