@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import swal from "@sweetalert/with-react";
 import { Link } from "react-router-dom";
-import { Navigate } from "react-router-dom"
+import { Navigate } from "react-router-dom";
 
 const Listado = () => {
   const token = sessionStorage.getItem("token");
@@ -31,98 +31,112 @@ const Listado = () => {
 
       {movies.map((oneMovie, id) => {
         return (
-          <div
-            className="min-h-full my-8 grid place-items-center font-mono bg-gray-900 "
-            key={id}
-          >
-            <div className=" rounded-md bg-gray-800 shadow-lg">
-              <div className="md:flex px-4 leading-none max-w-4xl">
-                <div className="flex-none ">
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500/${oneMovie.poster_path}`}
-                    alt="pic"
-                    className="h-72 w-56 rounded-md shadow-2xl transform -translate-y-4 border-4 border-gray-300"
-                  />
-                </div>
+          <div  key={id}>
+            <div class="flex max-w-sm w-full  shadow-md rounded-lg overflow-hidden mx-auto">
+              <div class="w-2 bg-gray-800"></div>
 
-                <div className="flex-col text-gray-300">
-                  <p className="pt-4 text-2xl font-bold">{oneMovie.title}</p>
-                  <hr className="hr-text" data-content="" />
-                  <div className="text-md flex justify-between px-4 my-2">
-                    <span className="font-bold">
-                      RELEASE: {oneMovie.release_date}
-                    </span>
-                    <span className="font-bold"></span>
+              <div
+                class="overflow-hidden rounded-xl relative transform hover:-translate-y-2 transition ease-in-out duration-500 shadow-lg hover:shadow-2xl movie-item text-white movie-card"
+                data-movie-id="438631"
+              >
+                <div class="absolute inset-0 z-10 transition duration-300 ease-in-out bg-gradient-to-t from-black via-gray-900 to-transparent"></div>
+                <div
+                  class="relative cursor-pointer group z-10 px-10 pt-10 space-y-6 movie_info"
+                  data-lity=""
+                  href="https://www.youtube.com/embed/aSHs224Dge0"
+                >
+                  <div class="poster__info align-self-end w-full">
+                    <div class="h-32"></div>
+                    <div class="space-y-6 detail_info">
+                      <div class="flex flex-col space-y-2 inner">
+                        <a
+                          class="relative flex items-center w-min flex-shrink-0 p-1 text-center text-white bg-red-500 rounded-full group-hover:bg-red-700"
+                          data-unsp-sanitized="clean"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-10 h-10"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM9.555 7.168A1 1 0 0 0 8 8v4a1 1 0 0 0 1.555.832l3-2a1 1 0 0 0 0-1.664l-3-2z"
+                              clip-rule="evenodd"
+                            ></path>
+                          </svg>
+                          <div class="absolute transition opacity-0 duration-500 ease-in-out transform group-hover:opacity-100 group-hover:translate-x-16 text-xl font-bold text-white group-hover:pr-2">
+                            Trailer
+                          </div>
+                        </a>
+                        <h3
+                          class="text-2xl font-bold text-white"
+                          data-unsp-sanitized="clean"
+                        >
+                          {oneMovie.title}
+                        </h3>
+                        <div class="mb-0 text-lg text-gray-400">
+                          {oneMovie.tagline}
+                        </div>
+                      </div>
+                      <div class="flex flex-row justify-between datos">
+                        <div class="flex flex-col datos_col">
+                          <div class="popularity">{oneMovie.popularity}</div>
+                          <div class="text-sm text-gray-400">Popularity:</div>
+                        </div>
+                        <div class="flex flex-col datos_col">
+                          <div class="release">{oneMovie.release_date}</div>
+                          <div class="text-sm text-gray-400">Release date:</div>
+                        </div>
+                        <div class="flex flex-col datos_col">
+                          <div class="release">{oneMovie.vote_average}</div>
+                          <div class="text-sm text-gray-400">Vote:</div>
+                        </div>
+                      </div>
+                      <div class="flex flex-col overview">
+                        <div class="flex flex-col"></div>
+                        <div class="text-xs text-gray-400 mb-2">Overview:</div>
+                        <p class="text-xs text-gray-100 mb-6">
+                          {oneMovie.overview}
+                        </p>
+                      </div>
+                    </div>
+                    {/* <div
+                      data-countdown="2021-09-15"
+                      class="absolute inset-x-0 top-0 pt-5 w-full mx-auto text-2xl uppercase text-center drop-shadow-sm font-bold text-white"
+                    >
+                      00 Days 00:00:00
+                    </div> */}
                   </div>
-                  {/* <p className="hidden md:block px-4 my-4 text-sm text-left">
-                    REVIEW : {oneMovie.overview}
-                  </p> */}
-
-                  <p className="flex text-md px-4 my-2">
-                    {oneMovie.vote_average}
-                    <span className="font-bold px-2">|</span>
-                    VOTE COUNT : {oneMovie.vote_count}
-                  </p>
-
-                  <div className="text-xs">
-                    <button
-                      type="button"
-                      className="border border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-yellow-800 focus:outline-none focus:shadow-outline"
-                    >
-                      TRAILER
-                    </button>
-
-                    <button
-                      type="button"
-                      className="border border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-yellow-800 focus:outline-none focus:shadow-outline"
-                    >
-                      IMDB
-                    </button>
-
-                    <button
-                      type="button"
-                      className="border border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-yellow-800 focus:outline-none focus:shadow-outline"
-                    >
-                      AMAZON
-                    </button>
-
-                    <Link
-                      to={`/moviedetail?movieid=${oneMovie.id}`}
-                      className="border border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-yellow-5 00 focus:outline-none focus:shadow-outline"
-                    >
-                      Watch Movie
-                    </Link>
-                  </div>
                 </div>
-              </div>
-              <div className="flex justify-between items-center px-4 mb-4 w-full">
-                <div className="flex">
-                  <i className="material-icons mr-2 text-red-600 hover:text-red-900 ">
-                    favorite_border
-                  </i>
-                  <i className="material-icons text-blue-600 hover:text-blue-800">
-                    remove_red_eye
-                  </i>
-                </div>
-                <div className="flex">
-                  <i className="material-icons ml-2 text-yellow-600 hover:text-yellow-800">
-                    sentiment_very_satisfied
-                  </i>
-                  <i className="material-icons ml-2 text-yellow-600 hover:text-yellow-800">
-                    sentiment_neutral
-                  </i>
-                  <i className="material-icons ml-2 text-yellow-600 hover:text-yellow-800">
-                    sentiment_very_dissatisfied
-                  </i>
-                  <i className="material-icons ml-2 text-yellow-600 hover:text-yellow-800">
-                    star_outline
-                  </i>
-                  <i className="material-icons ml-2 text-yellow-600 hover:text-yellow-800">
-                    star_half
-                  </i>
-                  <i className="material-icons ml-2 text-yellow-600 hover:text-yellow-800">
-                    star
-                  </i>
+                <img
+                  className="absolute inset-0 transform w-full -translate-y-4"
+                  src={`https://image.tmdb.org/t/p/w500/${oneMovie.poster_path}`}
+                  // style="filter: grayscale(0);"
+                />
+                <div class="poster__footer flex flex-row relative pb-10 space-x-4 z-10">
+                  <Link
+                    class="flex items-center py-2 px-4 rounded-full mx-auto text-white bg-red-500 hover:bg-red-700"
+                    to={`/moviedetail?movieID=${oneMovie.id}`}
+                    data-unsp-sanitized="clean"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-6 h-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      ></path>
+                    </svg>
+
+                    <div class="text-sm text-white ml-2">Watch</div>
+                  </Link>
                 </div>
               </div>
             </div>
