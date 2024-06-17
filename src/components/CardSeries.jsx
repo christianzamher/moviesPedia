@@ -11,32 +11,32 @@ const CardList = (props) => {
   let token = sessionStorage.getItem("token");
   const params = useParams();
   let query = new URLSearchParams(window.location.search);
-  let movieID = query.get("movieID");
+  let tvID = query.get("tvID");
 
   console.log(props);
 
   //Hooks
 
-  const [movie, setMovie] = useState();
+  const [tv, setTv] = useState();
 
   useEffect(() => {
-    const moviePoint =   `https://api.themoviedb.org/3/movie/${movieID}?api_key=08a8246a9e59f864e9c48e34d244f625&include_adult=false&include_video=false&language=en`;
+    const tvPoint = `https://api.themoviedb.org/3/tv/${tvID}?api_key=08a8246a9e59f864e9c48e34d244f625&include_adult=false&include_video=false&language=en`;
     axios
-      .get(moviePoint)
+      .get(tvPoint)
       .then((response) => {
-        const movieData = response.data;
-        setMovie(movieData);
+        const tvData = response.data;
+        setTv(tvData);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [movieID]);
+  }, [tvID]);
 
   return (
     <>
       {!token && <Navigate to="/" />}
-      {!movie && <p>Loading...</p>}
-      {movie && (
+      {!tv && <p>Loading...</p>}
+      {tv && (
         <div
           className="min-h-full my-8 grid place-items-center font-mono bg-gray-900 "
           // key={id}
@@ -45,31 +45,31 @@ const CardList = (props) => {
             <div className="md:flex px-4 leading-none max-w-4xl">
               <div className="flex-none ">
                 <img
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  src={`https://image.tmdb.org/t/p/w500/${tv.poster_path}`}
                   alt="pic"
                   className="h-72 w-56 rounded-md shadow-2xl transform -translate-y-4 border-4 border-gray-300"
                 />
               </div>
 
-              <div className="flex-col text-gray-300" key={movie.id}>
+              <div className="flex-col text-gray-300">
                 <p className="pt-4 text-2xl font-bold"></p>
                 <hr className="hr-text" data-content="" />
                 <div className="text-md flex justify-between px-4 my-2">
                   <span className="font-bold">
-                    RELEASE: {movie.release_date}
+                    Name: {tv.original_name}
                   </span>
                   <span className="font-bold"></span>
                 </div>
                 <p className="hidden md:block px-4 my-4 text-sm text-left">
-                  Run time : {movie.runtime} Min.
+                  First Episode : {tv.first_air_date} 
                 </p>
 
                 <p className="flex text-md px-4 my-2">
-                  REVIEW : {movie.overview}
+                  REVIEW : {tv.overview}
                 </p>
 
-                {movie &&
-                  movie.genres.map((oneGenre) => (
+                {tv &&
+                  tv.genres.map((oneGenre) => (
                     <ul>
                       <li key={oneGenre.id}>
                         {" "}

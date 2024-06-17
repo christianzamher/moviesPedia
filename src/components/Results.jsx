@@ -1,39 +1,48 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 import swal from "@sweetalert/with-react";
-import { Link } from "react-router-dom";
-import { Navigate } from "react-router-dom";
 
-const Listado = () => {
-  const token = sessionStorage.getItem("token");
-  const [movies, setMovies] = useState([]);
+const Results = () => {
+   let query  = new URLSearchParams(window.location.search)
+   let keyword = query.get("keyword")
 
-  useEffect(() => {
+   const [moviesResult , setMoviesResult] = useState([])
+
+   useEffect(() => {
     const endPoint =
-      "https://api.themoviedb.org/3/discover/movie?api_key=08a8246a9e59f864e9c48e34d244f625&include_adult=false&include_video=false&language=en&page=1&sort_by=popularity.desc";
+      `https://api.themoviedb.org/3/search/multi?api_key=08a8246a9e59f864e9c48e34d244f625&include_adult=false&include_video=false&language=en&query=${keyword}`;
     axios
       .get(endPoint)
       .then((res) => {
-        const apiData = res.data;
-        setMovies(apiData.results);
+        const moviesArray= res.data.results;
+        if (moviesArray.length === 0) {
+            swal(<h2> Oops! no match , please try again</h2>)
+        }
+        setMoviesResult(moviesArray);
       })
       .catch((error) => {
         swal(<h2> Oops! Error in DataBase , please try again</h2>);
       });
-  }, [setMovies]);
-
-  console.log(movies);
-
-  return (
+  }, [keyword]);
+  
+    return (
     <>
-      {!token && <Navigate to="/" />}
+    <div className='flex max-w-sm w-full text-slate-100'>
 
-      <div   className="flex flex-wrap" >
-      {movies.map((oneMovie, id) => {
+    <h2>Results: </h2>
+    <p> {keyword}</p>
+    {moviesResult.length === 0 && <h3>No Match </h3>}
+    </div>
+
+    <div   className="flex flex-wrap" >
+      {moviesResult.map((oneMovie, id) => {
         return (
             <div key={id} className="flex max-w-sm w-full  shadow-md rounded-lg overflow-hidden mx-auto my-4">
-              <div className="w-2 bg-gray-800"></div>
+              <div className="w-2 bg-gray-800">
+                
+              </div>
 
               <div
                 className="overflow-hidden rounded-xl relative transform hover:-translate-y-2 transition ease-in-out duration-500 shadow-lg hover:shadow-2xl movie-item text-white movie-card"
@@ -73,7 +82,18 @@ const Listado = () => {
                           className="text-2xl font-bold text-white"
                           data-unsp-sanitized="clean"
                         >
-                          {oneMovie.title}
+                          {oneMovie.title  }
+                        </h3>
+                        <h3
+                          className="text-2xl font-bold text-white"
+                          data-unsp-sanitized="clean"
+                        >
+                          {<h3
+                          className="text-2xl font-bold text-white"
+                          data-unsp-sanitized="clean"
+                        >
+                          {oneMovie.original_name  }
+                        </h3>  }
                         </h3>
                         <div className="mb-0 text-lg text-gray-400">
                           {oneMovie.tagline}
@@ -107,7 +127,7 @@ const Listado = () => {
                 <img
                   className="absolute inset-0 transform w-full -translate-y-4"
                   src={`https://image.tmdb.org/t/p/w500/${oneMovie.poster_path}`}
-                   //style={{filter: grayscale(0)}}
+                   
                 />
                 <div className="poster__footer flex flex-row relative pb-10 space-x-4 z-10">
                   <Link
@@ -142,7 +162,7 @@ const Listado = () => {
       })}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Listado;
+export default Results

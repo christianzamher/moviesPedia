@@ -11,7 +11,7 @@ const Listado = () => {
 
   useEffect(() => {
     const endPoint =
-      "https://api.themoviedb.org/3/discover/movie?api_key=08a8246a9e59f864e9c48e34d244f625&include_adult=false&include_video=false&language=en&page=1&sort_by=popularity.desc";
+      "https://api.themoviedb.org/3/movie/upcoming?api_key=08a8246a9e59f864e9c48e34d244f625&include_adult=false&include_video=false&language=en&page=1&sort_by=popularity.desc";
     axios
       .get(endPoint)
       .then((res) => {

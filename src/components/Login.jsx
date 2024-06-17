@@ -28,14 +28,14 @@ const Login = () => {
     }
 
     if (email === "" || password === "") {
-      swal(<h2>"Los campos no pueden estar vacios"</h2>);
+      swal(<h2>"Fields cannot be empty"</h2>);
       return;
     }
 
     if (email !== "challenge@alkemy.org" || password !== "react") {
       swal(<h2>"User or Password incorrect"</h2>);
     } else {
-      swal(<h2>"Bienvenido a Alkemy!"</h2>);
+      swal(<h2>"Welcome to Movispedia!"</h2>);
     }
 
     axios

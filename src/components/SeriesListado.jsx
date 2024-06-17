@@ -5,32 +5,32 @@ import swal from "@sweetalert/with-react";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
-const Listado = () => {
+const SeriesListado = () => {
   const token = sessionStorage.getItem("token");
-  const [movies, setMovies] = useState([]);
+  const [series, setSeries] = useState([]);
 
   useEffect(() => {
     const endPoint =
-      "https://api.themoviedb.org/3/discover/movie?api_key=08a8246a9e59f864e9c48e34d244f625&include_adult=false&include_video=false&language=en&page=1&sort_by=popularity.desc";
+      "https://api.themoviedb.org/3/discover/tv?api_key=08a8246a9e59f864e9c48e34d244f625&include_adult=false&include_video=false&language=en&page=1&sort_by=popularity.desc";
     axios
       .get(endPoint)
       .then((res) => {
         const apiData = res.data;
-        setMovies(apiData.results);
+        setSeries(apiData.results);
       })
       .catch((error) => {
         swal(<h2> Oops! Error in DataBase , please try again</h2>);
       });
-  }, [setMovies]);
+  }, [setSeries]);
 
-  console.log(movies);
+  console.log(series);
 
   return (
     <>
       {!token && <Navigate to="/" />}
 
       <div   className="flex flex-wrap" >
-      {movies.map((oneMovie, id) => {
+      {series.map((oneMovie, id) => {
         return (
             <div key={id} className="flex max-w-sm w-full  shadow-md rounded-lg overflow-hidden mx-auto my-4">
               <div className="w-2 bg-gray-800"></div>
@@ -73,7 +73,7 @@ const Listado = () => {
                           className="text-2xl font-bold text-white"
                           data-unsp-sanitized="clean"
                         >
-                          {oneMovie.title}
+                          {oneMovie.original_name}
                         </h3>
                         <div className="mb-0 text-lg text-gray-400">
                           {oneMovie.tagline}
@@ -86,7 +86,7 @@ const Listado = () => {
                         </div>
                         <div className="flex flex-col datos_col">
                           <div className="release">{oneMovie.release_date}</div>
-                          <div className="text-sm text-gray-400">Release date:</div>
+                          <div className="text-sm text-gray-400"></div>
                         </div>
                         <div className="flex flex-col datos_col">
                           <div className="release">{oneMovie.vote_average}</div>
@@ -112,7 +112,7 @@ const Listado = () => {
                 <div className="poster__footer flex flex-row relative pb-10 space-x-4 z-10">
                   <Link
                     className="flex items-center py-2 px-4 rounded-full mx-auto text-white bg-red-500 hover:bg-red-700"
-                    to={`/moviedetail?movieID=${oneMovie.id}`}
+                    to={`/seriesdetail?tvID=${oneMovie.id}`}
                     data-unsp-sanitized="clean"
                   >
                     <svg
@@ -145,4 +145,4 @@ const Listado = () => {
   );
 };
 
-export default Listado;
+export default SeriesListado;
