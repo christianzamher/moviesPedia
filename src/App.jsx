@@ -2,38 +2,41 @@ import { useState } from "react";
 import "./App.css";
 import Login from "./components/Login";
 import Listado from "./components/Listado";
-import {  Route , Routes} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
-import  Header from './components/Header';
+import Header from "./components/Header";
 import CardList from "./components/CardList";
 import Results from "./components/Results";
 import SeriesListado from "./components/SeriesListado";
-import CardSeries from  "./components/CardSeries"
-import Popular from "./components/Popular"
-
+import CardSeries from "./components/CardSeries";
+import Popular from "./components/Popular";
+import CardVideo from "./components/CardVideo";
+import CardVideoSeries from "./components/CardVideoSeries";
 
 function App() {
   const [count, setCount] = useState(0);
 
-  const addFav = ()=>{
+  const addFav = () => {
     console.log("funciona");
-  }
+  };
   return (
     <>
-      
-
-      <Header/>
+      <Header />
       <Routes>
-         <Route path="/" Component={Login} />
-         <Route path="/listado" Component={Listado} />
-         <Route path="/all" Component={Popular} />
-         <Route path="/series" Component={SeriesListado} />
-         <Route path="/moviedetail" Component = {( props) =>  <CardList addFav = {addFav} {...props} />} />
-         <Route path="/seriesdetail" Component=  {  CardSeries  } />
-         <Route path="/results" Component={Results}/>
+        <Route path="/" Component={Login} />
+        <Route path="/listado" Component={Listado} />
+        <Route path="/all" Component={Popular} />
+        <Route path="/series" Component={SeriesListado} />
+        <Route
+          path="/moviedetail"
+          Component={(props) => <CardList addFav={addFav} {...props} />}
+        />
+        <Route path="/seriesdetail" Component={CardSeries} />
+        <Route path="/results" Component={Results} />
+        <Route path="/watch" Component={CardVideo} />
+        <Route path="/watchSeries" Component={CardVideoSeries} />
       </Routes>
-      <Footer/> 
-      
+      <Footer />
     </>
   );
 }

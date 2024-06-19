@@ -4,6 +4,7 @@ import axios from "axios";
 import swal from "@sweetalert/with-react";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
+import CardVideoSeries from "./CardVideoSeries";
 
 const SeriesListado = () => {
   const token = sessionStorage.getItem("token");
@@ -66,7 +67,10 @@ const SeriesListado = () => {
                             ></path>
                           </svg>
                           <div className="absolute transition opacity-0 duration-500 ease-in-out transform group-hover:opacity-100 group-hover:translate-x-16 text-xl font-bold text-white group-hover:pr-2">
+                            <Link to ={""}>
+                            
                             Trailer
+                            </Link>
                           </div>
                         </a>
                         <h3
@@ -97,7 +101,7 @@ const SeriesListado = () => {
                         <div className="flex flex-col"></div>
                         <div className="text-xs text-gray-400 mb-2">Overview:</div>
                         <p className="text-xs text-gray-100 mb-6">
-                          {oneMovie.overview}
+                          {oneMovie.overview || oneMovie.name} 
                         </p>
                       </div>
                     </div>
@@ -106,7 +110,7 @@ const SeriesListado = () => {
                 </div>
                 <img
                   className="absolute inset-0 transform w-full -translate-y-4"
-                  src={`https://image.tmdb.org/t/p/w500/${oneMovie.poster_path}`}
+                  src={`https://image.tmdb.org/t/p/w500/${oneMovie.poster_path || oneMovie.backdrop_path}`}
                    //style={{filter: grayscale(0)}}
                 />
                 <div className="poster__footer flex flex-row relative pb-10 space-x-4 z-10">

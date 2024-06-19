@@ -1,19 +1,19 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import CardVideoSeries from "./CardVideoSeries";
+import Spinner from "./Spinner";
 
-const CardList = (props) => {
+const CardSeries = (props) => {
   //Variables
 
   let token = sessionStorage.getItem("token");
-  const params = useParams();
   let query = new URLSearchParams(window.location.search);
   let tvID = query.get("tvID");
 
-  console.log(props);
+  console.log(tvID);
 
   //Hooks
 
@@ -35,10 +35,10 @@ const CardList = (props) => {
   return (
     <>
       {!token && <Navigate to="/" />}
-      {!tv && <p>Loading...</p>}
+      {!tv && <Spinner/>}
       {tv && (
         <div
-          className="min-h-full my-8 grid place-items-center font-mono bg-gray-900 "
+          className="min-h-full my-8 grid place-items-center font-sans bg-gray-900 "
           // key={id}
         >
           <div className=" rounded-md bg-gray-800 shadow-lg">
@@ -55,18 +55,14 @@ const CardList = (props) => {
                 <p className="pt-4 text-2xl font-bold"></p>
                 <hr className="hr-text" data-content="" />
                 <div className="text-md flex justify-between px-4 my-2">
-                  <span className="font-bold">
-                    Name: {tv.original_name}
-                  </span>
+                  <span className="font-bold">Name: {tv.original_name}</span>
                   <span className="font-bold"></span>
                 </div>
                 <p className="hidden md:block px-4 my-4 text-sm text-left">
-                  First Episode : {tv.first_air_date} 
+                  First Episode : {tv.first_air_date}
                 </p>
 
-                <p className="flex text-md px-4 my-2">
-                  REVIEW : {tv.overview}
-                </p>
+                <p className="flex text-md px-4 my-2">REVIEW : {tv.overview}</p>
 
                 {tv &&
                   tv.genres.map((oneGenre) => (
@@ -79,12 +75,7 @@ const CardList = (props) => {
                   ))}
 
                 <div className="text-xs">
-                  <button
-                    type="button"
-                    className="border border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-yellow-800 focus:outline-none focus:shadow-outline"
-                  >
-                    TRAILER
-                  </button>
+                 
 
                   <button
                     type="button"
@@ -101,10 +92,10 @@ const CardList = (props) => {
                   </button>
 
                   <Link
-                    // to={`/moviedetail?movieID=${oneMovie.id}`}
+                    to={`/watchSeries?tvID=${tv.id}`}
                     className="border border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-yellow-5 00 focus:outline-none focus:shadow-outline"
                   >
-                    Watch Movie
+                    TRAILER
                   </Link>
                 </div>
               </div>
@@ -117,10 +108,9 @@ const CardList = (props) => {
                   </i>
                 </button>
                 <button>
-
-                <i className="material-icons text-blue-600 hover:text-blue-800">
-                  remove_red_eye
-                </i>
+                  <i className="material-icons text-blue-600 hover:text-blue-800">
+                    remove_red_eye
+                  </i>
                 </button>
               </div>
               <div className="flex">
@@ -147,8 +137,9 @@ const CardList = (props) => {
           </div>
         </div>
       )}
+      <CardVideoSeries/>
     </>
   );
 };
 
-export default CardList;
+export default CardSeries;

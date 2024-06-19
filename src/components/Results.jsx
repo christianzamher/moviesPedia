@@ -132,7 +132,7 @@ const Results = () => {
                 <div className="poster__footer flex flex-row relative pb-10 space-x-4 z-10">
                   <Link
                     className="flex items-center py-2 px-4 rounded-full mx-auto text-white bg-red-500 hover:bg-red-700"
-                    to={`/moviedetail?movieID=${oneMovie.id}`}
+                    to={`/moviedetail?movieID=${oneMovie.id} ` }
                     data-unsp-sanitized="clean"
                   >
                     <svg

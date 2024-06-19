@@ -28,7 +28,7 @@ const Listado = () => {
   return (
     <>
       {!token && <Navigate to="/" />}
-
+      {!movies && <Spinner/>}
       <div   className="flex flex-wrap" >
       {movies.map((oneMovie, id) => {
         return (
@@ -106,7 +106,7 @@ const Listado = () => {
                 </div>
                 <img
                   className="absolute inset-0 transform w-full -translate-y-4"
-                  src={`https://image.tmdb.org/t/p/w500/${oneMovie.poster_path}`}
+                  src={`https://image.tmdb.org/t/p/w500/${oneMovie.poster_path || oneMovie.backdrop_path}`}
                    //style={{filter: grayscale(0)}}
                 />
                 <div className="poster__footer flex flex-row relative pb-10 space-x-4 z-10">

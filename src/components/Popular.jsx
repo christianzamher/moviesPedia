@@ -5,7 +5,7 @@ import swal from "@sweetalert/with-react";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
-const Listado = () => {
+const Popular = () => {
   const token = sessionStorage.getItem("token");
   const [movies, setMovies] = useState([]);
 
@@ -145,4 +145,4 @@ const Listado = () => {
   );
 };
 
-export default Listado;
+export default Popular;

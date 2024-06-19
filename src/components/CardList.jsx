@@ -1,19 +1,22 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import CardVideo from "./CardVideo";
+import Spinner from "./Spinner";
 
 const CardList = (props) => {
   //Variables
 
   let token = sessionStorage.getItem("token");
-  const params = useParams();
+
   let query = new URLSearchParams(window.location.search);
   let movieID = query.get("movieID");
 
-  console.log(props);
+  
+ 
 
   //Hooks
 
@@ -35,10 +38,10 @@ const CardList = (props) => {
   return (
     <>
       {!token && <Navigate to="/" />}
-      {!movie && <p>Loading...</p>}
+      {!movie && <Spinner/>}
       {movie && (
         <div
-          className="min-h-full my-8 grid place-items-center font-mono bg-gray-900 "
+          className="min-h-full my-8 grid place-items-center font-sans bg-gray-900 "
           // key={id}
         >
           <div className=" rounded-md bg-gray-800 shadow-lg">
@@ -56,16 +59,16 @@ const CardList = (props) => {
                 <hr className="hr-text" data-content="" />
                 <div className="text-md flex justify-between px-4 my-2">
                   <span className="font-bold">
-                    RELEASE: {movie.release_date}
+                    {movie.original_title}
                   </span>
                   <span className="font-bold"></span>
                 </div>
                 <p className="hidden md:block px-4 my-4 text-sm text-left">
-                  Run time : {movie.runtime} Min.
+                  Popularity : {movie.release_date} 
                 </p>
 
                 <p className="flex text-md px-4 my-2">
-                  REVIEW : {movie.overview}
+                  Review : {movie.overview}
                 </p>
 
                 {movie &&
@@ -79,12 +82,7 @@ const CardList = (props) => {
                   ))}
 
                 <div className="text-xs">
-                  <button
-                    type="button"
-                    className="border border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-yellow-800 focus:outline-none focus:shadow-outline"
-                  >
-                    TRAILER
-                  </button>
+                 
 
                   <button
                     type="button"
@@ -101,10 +99,10 @@ const CardList = (props) => {
                   </button>
 
                   <Link
-                    // to={`/moviedetail?movieID=${oneMovie.id}`}
+                     to={`/watch?movieID=${movie.id}`}
                     className="border border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-yellow-5 00 focus:outline-none focus:shadow-outline"
                   >
-                    Watch Movie
+                    TRAILER
                   </Link>
                 </div>
               </div>
@@ -147,6 +145,7 @@ const CardList = (props) => {
           </div>
         </div>
       )}
+      <CardVideo/>
     </>
   );
 };
