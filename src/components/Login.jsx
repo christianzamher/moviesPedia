@@ -39,7 +39,7 @@ const Login = () => {
     }
 
     axios
-      .post("http://challenge-react.alkemy.org", { email, password })
+      .post("https://challenge-react.alkemy.org", { email, password })
       .then((res) => {
         alert(<h2>Ingresaste correctamente</h2>);
         const tokenRecibido = res.data.token;
@@ -52,7 +52,7 @@ const Login = () => {
 
   return (
     <>
-      {token && <Navigate to="/listado" />}
+      {token && <Navigate to="/all" />}
 
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-lg">
