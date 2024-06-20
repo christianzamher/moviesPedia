@@ -1,7 +1,6 @@
-import { useState } from "react";
 import "./App.css";
 import Login from "./components/Login";
-import Listado from "./components/Listado";
+import Movie from "./components/Movies";
 import { Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -14,8 +13,6 @@ import CardVideo from "./components/CardVideo";
 import CardVideoSeries from "./components/CardVideoSeries";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   const addFav = () => {
     console.log("funciona");
   };
@@ -24,7 +21,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" Component={Login} />
-        <Route path="/listado" Component={Listado} />
+        <Route path="/movies" Component={Movie} />
         <Route path="/all" Component={Popular} />
         <Route path="/series" Component={SeriesListado} />
         <Route

@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import swal from "@sweetalert/with-react";
+
 import { useNavigate } from "react-router";
 import { Navigate } from "react-router-dom";
 
@@ -21,27 +21,27 @@ const Login = () => {
 
     // Validations
     if (regexEmail.test(email) !== " " && password.length >= 3) {
-      swal(<h2>Logged In</h2>);
+      alert(<h2>Logged In</h2>);
     } else {
-      swal(<h2>Invalid Email or Password</h2>);
+     alert(<h2>Invalid Email or Password</h2>);
       return;
     }
 
     if (email === "" || password === "") {
-      swal(<h2>"Fields cannot be empty"</h2>);
+      alert(<h2>"Fields cannot be empty"</h2>);
       return;
     }
 
     if (email !== "challenge@alkemy.org" || password !== "react") {
-      swal(<h2>"User or Password incorrect"</h2>);
+      alert(<h2>"User or Password incorrect"</h2>);
     } else {
-      swal(<h2>"Welcome to Movispedia!"</h2>);
+      alert(<h2>"Welcome to Movispedia!"</h2>);
     }
 
     axios
       .post("http://challenge-react.alkemy.org", { email, password })
       .then((res) => {
-        swal(<h2>Ingresaste correctamente</h2>);
+        alert(<h2>Ingresaste correctamente</h2>);
         const tokenRecibido = res.data.token;
         sessionStorage.setItem("token", tokenRecibido);
         handleClick();

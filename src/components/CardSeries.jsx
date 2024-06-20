@@ -35,7 +35,7 @@ const CardSeries = (props) => {
   return (
     <>
       {!token && <Navigate to="/" />}
-      {!tv && <Spinner/>}
+      {!tv && <Spinner />}
       {tv && (
         <div
           className="min-h-full my-8 grid place-items-center font-sans bg-gray-900 "
@@ -75,8 +75,6 @@ const CardSeries = (props) => {
                   ))}
 
                 <div className="text-xs">
-                 
-
                   <button
                     type="button"
                     className="border border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-yellow-800 focus:outline-none focus:shadow-outline"
@@ -137,7 +135,7 @@ const CardSeries = (props) => {
           </div>
         </div>
       )}
-      <CardVideoSeries/>
+      <CardVideoSeries />
     </>
   );
 };

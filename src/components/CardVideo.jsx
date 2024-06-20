@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
-import { Link } from "react-router-dom";
+
 import Spinner from "./Spinner";
 
 const CardVideo = () => {

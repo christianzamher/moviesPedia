@@ -2,9 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import swal from "@sweetalert/with-react";
+
+import { Navigate } from "react-router-dom";
 
 const Results = () => {
+  const token = sessionStorage.getItem("token");
    let query  = new URLSearchParams(window.location.search)
    let keyword = query.get("keyword")
 
@@ -18,20 +20,21 @@ const Results = () => {
       .then((res) => {
         const moviesArray= res.data.results;
         if (moviesArray.length === 0) {
-            swal(<h2> Oops! no match , please try again</h2>)
+            alert(<h2> Oops! no match , please try again</h2>)
         }
         setMoviesResult(moviesArray);
       })
       .catch((error) => {
-        swal(<h2> Oops! Error in DataBase , please try again</h2>);
+        alert(<h2> Oops! Error in DataBase , please try again</h2>);
       });
   }, [keyword]);
   
     return (
     <>
+    {!token && <Navigate to="/" />}
     <div className='flex max-w-sm w-full text-slate-100'>
 
-    <h2>Results: </h2>
+    <h2 >Results: </h2>
     <p> {keyword}</p>
     {moviesResult.length === 0 && <h3>No Match </h3>}
     </div>
