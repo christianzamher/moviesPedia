@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import swal from "@sweetalert/with-react";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import CardVideoSeries from "./CardVideoSeries";
@@ -20,7 +19,7 @@ const SeriesListado = () => {
         setSeries(apiData.results);
       })
       .catch((error) => {
-        swal(<h2> Oops! Error in DataBase , please try again</h2>);
+        alert(<h2> Oops! Error in DataBase , please try again</h2>);
       });
   }, [setSeries]);
 
