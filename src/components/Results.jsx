@@ -6,7 +6,7 @@ import axios from 'axios'
 import { Navigate } from "react-router-dom";
 
 const Results = () => {
-  const token = sessionStorage.getItem("token");
+  // const token = sessionStorage.getItem("token");
    let query  = new URLSearchParams(window.location.search)
    let keyword = query.get("keyword")
 
@@ -31,7 +31,7 @@ const Results = () => {
   
     return (
     <>
-    {!token && <Navigate to="/" />}
+    {/* {!token && <Navigate to="/" />} */}
     <div className='flex max-w-sm w-full text-slate-100'>
 
     <h2 >Results: </h2>

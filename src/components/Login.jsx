@@ -7,7 +7,7 @@ import { Navigate } from "react-router-dom";
 const Login = () => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate("/listado");
+    navigate("/movies");
   };
 
   const HandleSubmit = (e) => {
@@ -21,27 +21,27 @@ const Login = () => {
 
     // Validations
     if (regexEmail.test(email) !== " " && password.length >= 3) {
-      alert(<h2>Logged In</h2>);
+      alert("<h2>Logged In</h2>");
     } else {
-     alert(<h2>Invalid Email or Password</h2>);
+     alert("<h2>Invalid Email or Password</h2>");
       return;
     }
 
     if (email === "" || password === "") {
-      alert(<h2>"Fields cannot be empty"</h2>);
+      alert("<h2>Fields cannot be empty</h2>");
       return;
     }
 
     if (email !== "challenge@alkemy.org" || password !== "react") {
-      alert(<h2>"User or Password incorrect"</h2>);
+      alert("<h2>User or Password incorrect</h2>");
     } else {
-      alert(<h2>"Welcome to Movispedia!"</h2>);
+      alert("<h2>Welcome to Movispedia!</h2>");
     }
 
     axios
-      .post("https://challenge-react.alkemy.org", { email, password })
+      .post("http://challenge-react.alkemy.org", { email, password })
       .then((res) => {
-        alert(<h2>Ingresaste correctamente</h2>);
+        alert("Ingresaste correctamente");
         const tokenRecibido = res.data.token;
         sessionStorage.setItem("token", tokenRecibido);
         handleClick();

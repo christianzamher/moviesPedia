@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ import Spinner from "./Spinner";
 const CardList = (props) => {
   //Variables
 
-  let token = sessionStorage.getItem("token");
+  // let token = sessionStorage.getItem("token");
 
   let query = new URLSearchParams(window.location.search);
   let movieID = query.get("movieID");
@@ -36,7 +36,7 @@ const CardList = (props) => {
 
   return (
     <>
-      {!token && <Navigate to="/" />}
+      {/* {!token && <Navigate to="/" />} */}
       {!movie && <Spinner/>}
       {movie && (
         <div

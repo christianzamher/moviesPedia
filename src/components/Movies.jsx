@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import { Link } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 
 const Movie = () => {
-  const token = sessionStorage.getItem("token");
+  // const token = sessionStorage.getItem("token");
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Movie = () => {
 
   return (
     <>
-      {!token && <Navigate to="/" />}
+      {/* {!token && <Navigate to="/" />} */}
       {!movies && <Spinner/>}
       <div   className="flex flex-wrap" >
       {movies.map((oneMovie, id) => {

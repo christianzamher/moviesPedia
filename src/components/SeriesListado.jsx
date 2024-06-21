@@ -2,11 +2,11 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 import CardVideoSeries from "./CardVideoSeries";
 
 const SeriesListado = () => {
-  const token = sessionStorage.getItem("token");
+  // const token = sessionStorage.getItem("token");
   const [series, setSeries] = useState([]);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const SeriesListado = () => {
 
   return (
     <>
-      {!token && <Navigate to="/" />}
+      {/* {!token && <Navigate to="/" />} */}
 
       <div   className="flex flex-wrap" >
       {series.map((oneMovie, id) => {

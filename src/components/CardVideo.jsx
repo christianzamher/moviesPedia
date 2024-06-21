@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 import axios from "axios";
 
 import Spinner from "./Spinner";
@@ -8,7 +8,7 @@ const CardVideo = () => {
   
   //Variables
 
-  let token = sessionStorage.getItem("token");
+  // let token = sessionStorage.getItem("token");
   let query = new URLSearchParams(window.location.search);
   let movieID = query.get("movieID");
 
@@ -30,9 +30,9 @@ const CardVideo = () => {
   }, [movieID]);
 
  //Security 
-  if (!token) {
-    return <Navigate to="/" />;
-  }
+  // if (!token) {
+  //   return <Navigate to="/" />;
+  // }
 
   //Spinner
   if (!videoData || !videoData.results.length) {
