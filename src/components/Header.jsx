@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
+import Dropdown from "./Dropdown"
 
 const Header = () => {
   return (
@@ -38,8 +39,12 @@ const Header = () => {
               <li className="md:px-4 md:py-2 hover:text-indigo-400">
                 <Link to="/movies">Movies</Link>
               </li>
-              <li className="md:px-4 md:py-2 hover:text-indigo-400">
+              {/* <li className="md:px-4 md:py-2 hover:text-indigo-400">
                 <Link to="/gender">Gender</Link>
+              </li> */}
+              <li>
+
+              <Dropdown/>
               </li>
             </ul>
           </div>
@@ -65,6 +70,7 @@ const Header = () => {
 
                 <span>Login</span>
               </Link> */}
+              
             </ul>
           </div>
         </div>

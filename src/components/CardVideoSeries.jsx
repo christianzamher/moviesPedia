@@ -34,7 +34,7 @@ const CardVideoSeries = () => {
 
   //Spinner
   if (!videoData || !videoData.results.length) {
-    return <Spinner/>;
+    return <Spinner />;
   }
 
   return (
@@ -50,8 +50,12 @@ const CardVideoSeries = () => {
             <div className="text-xs ">
               <iframe
                 id="youtube-player"
-                width="865"
-                height="600"
+                width="90vh"
+                height="90vh"
+                margin="5%"
+                display="flex"
+                justify-content="center"
+                align-items="center"
                 src={`https://www.youtube.com/embed/${videoData.results[0].key}`}
                 title="YouTube video player"
                 frameBorder="0"

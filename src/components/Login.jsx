@@ -48,6 +48,16 @@ const Login = () => {
       });
   };
 
+//   const API_KEY = 'tu_clave_api_aquí'; // Reemplaza esto con tu clave API real
+// const BASE_URL = 'https://api.themoviedb.org/3';
+
+// const apiClient = axios.create({
+//   baseURL: BASE_URL,
+//   params: {
+//     api_key: API_KEY,
+//   },
+// });
+
   let token = sessionStorage.getItem("token");
 
   return (
