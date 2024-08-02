@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
-import Dropdown from "./Dropdown"
+// import Dropdown from "./Dropdown"
 
 const Header = () => {
   return (
